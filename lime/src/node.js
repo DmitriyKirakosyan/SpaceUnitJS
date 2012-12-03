@@ -277,6 +277,42 @@ lime.Node.prototype.getPosition = function() {
 };
 
 /**
+ *
+ * @return {number}
+ */
+lime.Node.prototype.getX = function() {
+    return this.position_.x;
+}
+
+/**
+ *
+ * @return {number}
+ */
+lime.Node.prototype.getY = function() {
+    return this.position_.y;
+}
+
+/**
+ *
+ * @param value
+ */
+lime.Node.prototype.setX = function(value) {
+    this.position_.x = value;
+    if (this.transitionsActive_[lime.Transition.POSITION]) return this;
+    return this.setDirty(lime.Dirty.POSITION);
+}
+
+/**
+ *
+ * @param value
+ */
+lime.Node.prototype.setY = function(value) {
+    this.position_.y = value;
+    if (this.transitionsActive_[lime.Transition.POSITION]) return this;
+    return this.setDirty(lime.Dirty.POSITION);
+}
+
+/**
  * Sets new position for element. Also accepts 2 numbers(x and y value)
  * @param {(goog.math.Coordinate|number)} value Position coordinate.
  * @param {number=} opt_y Optionaly set position using x,y.
